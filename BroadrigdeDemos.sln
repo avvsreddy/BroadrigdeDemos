@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsCalculatorApp", "Wi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicsDemo", "BasicsDemo\BasicsDemo.csproj", "{2AE41F25-504D-4763-BD82-01EB3DBC1606}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OODemos", "OODemos\OODemos.csproj", "{2211A9AA-0A95-47D5-8C77-9F35C9FEC986}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainerTraineeApp", "TrainerTraineeApp\TrainerTraineeApp.csproj", "{0E9AD01D-213B-4AEF-A5E9-E0FA132E8E66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{2AE41F25-504D-4763-BD82-01EB3DBC1606}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AE41F25-504D-4763-BD82-01EB3DBC1606}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AE41F25-504D-4763-BD82-01EB3DBC1606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2211A9AA-0A95-47D5-8C77-9F35C9FEC986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2211A9AA-0A95-47D5-8C77-9F35C9FEC986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2211A9AA-0A95-47D5-8C77-9F35C9FEC986}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2211A9AA-0A95-47D5-8C77-9F35C9FEC986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E9AD01D-213B-4AEF-A5E9-E0FA132E8E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E9AD01D-213B-4AEF-A5E9-E0FA132E8E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E9AD01D-213B-4AEF-A5E9-E0FA132E8E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E9AD01D-213B-4AEF-A5E9-E0FA132E8E66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
