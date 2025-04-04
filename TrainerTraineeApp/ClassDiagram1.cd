@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TrainerTraineeApp.Program">
-    <Position X="10" Y="0.75" Width="1.5" />
+    <Position X="11.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -42,7 +42,14 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TrainerTraineeApp.Training">
-    <Position X="2.75" Y="2.25" Width="1.5" />
+    <Position X="2" Y="2.25" Width="2.25" />
+    <AssociationLine Name="Trainees" Type="TrainerTraineeApp.Trainee" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="2.507" />
+        <Point X="5.438" Y="2.507" />
+        <Point X="5.438" Y="1.349" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAAAAAAACAACCAAAAACAAAAAAAgAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -56,7 +63,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TrainerTraineeApp.Cource">
-    <Position X="2.75" Y="5" Width="1.5" />
+    <Position X="2.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -66,7 +73,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TrainerTraineeApp.Module">
-    <Position X="4.75" Y="3" Width="1.5" />
+    <Position X="5.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -76,7 +83,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TrainerTraineeApp.Unit">
-    <Position X="6.75" Y="3" Width="1.5" />
+    <Position X="8" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -86,7 +93,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TrainerTraineeApp.Topic">
-    <Position X="6.75" Y="4.5" Width="1.5" />
+    <Position X="8" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
