@@ -56,22 +56,22 @@
         int Get(int x);
     }
 
-    public class DynamicArray<idontknow> //: IDynaicIntArray
+    public class DynamicArray<T> //: IDynaicIntArray
     {
-        private idontknow[] numbers = new idontknow[5];
+        private T[] numbers = new T[5];
         private int index = 0;
-        public void Add(idontknow x)
+        public void Add(T x)
         {
             if (index < numbers.Length) // full
             {
-                idontknow[] temp = new idontknow[numbers.Length * 2];
+                T[] temp = new T[numbers.Length * 2];
                 Array.Copy(numbers, temp, numbers.Length);
                 numbers = temp;
             }
             numbers[index++] = x;
         }
 
-        public idontknow Get(idontknow x)
+        public T Get(T x)
         {
             return numbers[x];
         }
