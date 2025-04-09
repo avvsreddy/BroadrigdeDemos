@@ -72,7 +72,7 @@
 
 
 
-        // should find sum of two non zero non negative and non odd numbers onlyu
+        // should find sum of two non zero non negative and non odd numbers only then store in a file
 
 
         /// <summary>
@@ -84,7 +84,7 @@
         /// <exception cref="ValueZeroInputException"></exception>
         /// <exception cref="NegativeInputException"></exception>
         /// <exception cref="OddNumberInputException"></exception>
-        public int Sum(int a, int b)
+        public int Sum(int a, int b) // BLL
         {
             // non zero
             if (a == 0 || b == 0)
@@ -99,7 +99,36 @@
             {
                 throw new OddNumberInputException("Please enter non odd numbers only");
             }
+            string result = $"{a} + {b} = {a + b}";
+            ResultRepository repo = new ResultRepository();
+            try
+            {
+                repo.Save(result);
+            }
+            catch (Exception ex)
+            {
+                // log the exp using some frameworks like serilog or n log
+                UnableToSaveException unableToSaveException = new UnableToSaveException("Unable to save result, try again later", ex);
+                throw unableToSaveException;
+
+            }
             return a + b;
+        }
+    }
+
+    class ResultRepository // DAL
+    {
+        public void Save(string result)
+        {
+            File.WriteAllText("d://test//results.txt", result);
+        }
+    }
+
+    public class UnableToSaveException : ApplicationException
+    {
+        public UnableToSaveException(string msg = null, Exception inner = null) : base(msg, inner)
+        {
+
         }
     }
 
