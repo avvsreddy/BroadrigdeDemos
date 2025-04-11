@@ -27,12 +27,78 @@ namespace EFDemoApp
 
             // Delete a productid 1 record
 
+            //Edit();
+            //Select();
+
+            // Lab 1: Get Product Name and Category Name then display
+            // IPhone Mobiles
+            // Galaxy Mobiles
+            // Dell XPS    Mobiles
+            // IWatch Smart Watches
+
+            // Lab 2 : Get all products belongs to Laptops
+            // Lab 3 : How many products in Mobiles Category
+            // Lab 4 : Get Costliest Product
+            // Lab 5 : Get cheapest Product
+            // Lab 6 : In which category have more products
+            // Lab 7: Which category has costliest product
+            // Lab 8: Get category and count of its products then display
+            // Example:
+            // Laptops 3
+            // Smart Watches 2
+
+
+
+
+        }
+
+        private static void NewMethod()
+        {
+            // Add a new product into existing category
+            using (ProductsDbContext dbContext = new ProductsDbContext())
+            {
+                var existingCategory = dbContext.Categories.Find(1);
+                Product newProduct = new Product
+                {
+                    Name = "Samsung Galaxy S25",
+                    Price = 99999,
+                    Brand = "Samsung",
+                    Category = existingCategory
+                };
+
+                dbContext.Products.Add(newProduct);
+                dbContext.SaveChanges();
+
+            }
+        }
+
+        private static void NewProductAndCategory()
+        {
+            // add new product and new category and save
+            Category c = new Category() { Name = "Mobiles" };
+            Product p = new Product { Name = "IPhone", Price = 90000, Brand = "Apple", Category = c };
+
+            using (ProductsDbContext dbContext = new ProductsDbContext())
+            {
+                dbContext.Products.Add(p);
+                //dbContext.Categories.Add(c);
+                dbContext.SaveChanges();
+            }
+        }
+
+        private static void Edit()
+        {
             // Edit a record
 
-            ProductsDbContext dbContext = new ProductsDbContext();
-            var productToEdit = dbContext.Products.Find(2);
-            productToEdit.Price += 1000;
-            dbContext.SaveChanges();
+            using (ProductsDbContext dbContext = new ProductsDbContext())
+            {
+                var productToEdit = dbContext.Products.Find(2);
+                // select
+                productToEdit.Price += 1000;
+                dbContext.SaveChanges();
+                //update
+                //dbContext.Dispose();
+            }
         }
 
         private static void Delete()
