@@ -71,7 +71,7 @@
             numbers[index++] = x;
         }
 
-        public T Get(T x)
+        public T Get(int x)
         {
             return numbers[x];
         }
