@@ -4,6 +4,7 @@ using EFDemoApp.DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFDemoApp.Migrations
 {
     [DbContext(typeof(ProductsDbContext))]
-    partial class ProductsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250414080812_TPT")]
+    partial class TPT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +27,6 @@ namespace EFDemoApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.HasSequence("PersonSequence");
 
             modelBuilder.Entity("EFDemoApp.Entities.Category", b =>
                 {
@@ -42,43 +43,15 @@ namespace EFDemoApp.Migrations
                     b.HasKey("CategoryID");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryID = 111,
-                            Name = "Category 1"
-                        },
-                        new
-                        {
-                            CategoryID = 222,
-                            Name = "Category 2"
-                        },
-                        new
-                        {
-                            CategoryID = 333,
-                            Name = "Category 3"
-                        },
-                        new
-                        {
-                            CategoryID = 444,
-                            Name = "Category 4"
-                        },
-                        new
-                        {
-                            CategoryID = 555,
-                            Name = "Category 5"
-                        });
                 });
 
             modelBuilder.Entity("EFDemoApp.Entities.Person", b =>
                 {
                     b.Property<int>("PersonID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValueSql("NEXT VALUE FOR [PersonSequence]");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseSequence(b.Property<int>("PersonID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonID"));
 
                     b.Property<string>("EmailId")
                         .HasColumnType("nvarchar(max)");
@@ -109,9 +82,9 @@ namespace EFDemoApp.Migrations
 
                     b.HasKey("PersonID");
 
-                    b.ToTable((string)null);
+                    b.ToTable("People");
 
-                    b.UseTpcMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("EFDemoApp.Entities.Product", b =>
@@ -203,6 +176,24 @@ namespace EFDemoApp.Migrations
                     b.HasOne("EFDemoApp.Entities.Supplier", null)
                         .WithMany()
                         .HasForeignKey("SuppliersPersonID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EFDemoApp.Entities.Customer", b =>
+                {
+                    b.HasOne("EFDemoApp.Entities.Person", null)
+                        .WithOne()
+                        .HasForeignKey("EFDemoApp.Entities.Customer", "PersonID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EFDemoApp.Entities.Supplier", b =>
+                {
+                    b.HasOne("EFDemoApp.Entities.Person", null)
+                        .WithOne()
+                        .HasForeignKey("EFDemoApp.Entities.Supplier", "PersonID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -30,25 +30,14 @@ namespace EFDemoApp.Entities
         public virtual List<Product> Products { get; set; }
     }
 
-    public class Supplier
+    public class Supplier : Person
     {
-        public int SupplierID { get; set; }
-        [Required]
-        public string Name { get; set; }
-        public string? EmailId { get; set; }
-
-        public string? Mobile { get; set; }
-
         public string? GST { get; set; }
-
         public int? Rating { get; set; }
-
-
-
 
         public virtual List<Product> Products { get; set; } = new List<Product>();
 
-        public Address Address { get; set; }
+        //public Address Address { get; set; }
     }
 
     [ComplexType]
@@ -57,5 +46,21 @@ namespace EFDemoApp.Entities
         public string Area { get; set; }
         public string City { get; set; }
         public string Pincode { get; set; }
+    }
+
+    abstract public class Person
+    {
+        public int PersonID { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public string? EmailId { get; set; }
+
+        public string? Mobile { get; set; }
+        public Address Address { get; set; }
+    }
+
+    public class Customer : Person
+    {
+        public int Discount { get; set; }
     }
 }

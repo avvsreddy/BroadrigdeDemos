@@ -33,14 +33,48 @@ namespace EFDemoApp
             // Lab 1: Get Product Name and Category Name then display
             using (ProductsDbContext dbContext = new ProductsDbContext())
             {
-                var products = from p in dbContext.Products//.Include(p => p.Category)
-                               select p;
-
-                foreach (var product in products)
+                // add new customer
+                Customer c = new Customer
                 {
-                    Console.WriteLine(product.Name + " " + product.Category.Name);
-                }
+                    Name = "Customer 1",
+                    EmailId = "customer1@mail.com",
+                    Mobile = "1234567899",
+                    Discount = 12,
+                    Address = new Address { Area = "White Field", City = "Bangalore", Pincode = "560010" }
+                };
+
+                // add new supplier
+                Supplier s = new Supplier
+                {
+                    Name = "Supplier1",
+                    EmailId = "supplier1@mail.com",
+                    GST = "A345S345",
+                    Mobile = "23423423423",
+                    Rating = 5,
+                    Address = new Address { Area = "Brookfield", City = "Bangalore", Pincode = "560037" }
+                };
+
+                //dbContext.Suppliers.Add(s);
+                dbContext.Customers.Add(c);
+
+                //dbContext.People.Add(s);
+                //dbContext.People.Add(c);
+
+                dbContext.SaveChanges();
+
+                //var customers = from cust in dbContext.Customers
+                //                select cust;
+
+
+                //var suppliers = from cust in dbContext.People.OfType<Supplier>()
+                //                select cust;
+
+                //foreach (var item in customers)
+                //{
+                //    Console.WriteLine(item.Name);
+                //}
             }
+
 
 
             // Add a new product with new category with new supplier

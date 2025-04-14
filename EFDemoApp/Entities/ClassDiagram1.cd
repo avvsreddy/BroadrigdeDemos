@@ -24,22 +24,50 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="EFDemoApp.Entities.Supplier">
-    <Position X="2.5" Y="4.25" Width="1.5" />
+    <Position X="2.75" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="EFDemoApp.Entities.Person" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="5.632" />
+        <Point X="6.25" Y="6.125" />
+        <Point X="4.25" Y="6.125" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAYAAAAAAAGCACAAAAAAAQQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAQQ=</HashCode>
       <FileName>Entities\Product.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Address" />
-    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Products" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="EFDemoApp.Entities.Address">
-    <Position X="5.25" Y="4.25" Width="1.5" />
+    <Position X="6" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABIAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Entities\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EFDemoApp.Entities.Person">
+    <Position X="5.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAYAAAAAAACCAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Product.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Address" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EFDemoApp.Entities.Customer">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="EFDemoApp.Entities.Person" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="5.632" />
+        <Point X="6.25" Y="6.125" />
+        <Point X="8.25" Y="6.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Entities\Product.cs</FileName>
     </TypeIdentifier>
   </Class>

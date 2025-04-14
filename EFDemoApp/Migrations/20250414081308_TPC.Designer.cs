@@ -4,6 +4,7 @@ using EFDemoApp.DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFDemoApp.Migrations
 {
     [DbContext(typeof(ProductsDbContext))]
-    partial class ProductsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250414081308_TPC")]
+    partial class TPC
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,33 +45,6 @@ namespace EFDemoApp.Migrations
                     b.HasKey("CategoryID");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryID = 111,
-                            Name = "Category 1"
-                        },
-                        new
-                        {
-                            CategoryID = 222,
-                            Name = "Category 2"
-                        },
-                        new
-                        {
-                            CategoryID = 333,
-                            Name = "Category 3"
-                        },
-                        new
-                        {
-                            CategoryID = 444,
-                            Name = "Category 4"
-                        },
-                        new
-                        {
-                            CategoryID = 555,
-                            Name = "Category 5"
-                        });
                 });
 
             modelBuilder.Entity("EFDemoApp.Entities.Person", b =>
