@@ -31,6 +31,23 @@ namespace EFDemoApp
             //Select();
 
             // Lab 1: Get Product Name and Category Name then display
+            using (ProductsDbContext dbContext = new ProductsDbContext())
+            {
+                var products = from p in dbContext.Products//.Include(p => p.Category)
+                               select p;
+
+                foreach (var product in products)
+                {
+                    Console.WriteLine(product.Name + " " + product.Category.Name);
+                }
+            }
+
+
+            // Add a new product with new category with new supplier
+            // display product name, category name and supplier name (use egar and lazy loading)
+
+
+
             // IPhone Mobiles
             // Galaxy Mobiles
             // Dell XPS    Mobiles
