@@ -1,5 +1,6 @@
 ﻿using EFDemoApp.DataLayer;
 using EFDemoApp.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFDemoApp
 {
@@ -7,6 +8,22 @@ namespace EFDemoApp
     {
         static void Main(string[] args)
         {
+
+            // Increase price to 1k for all product
+            using (ProductsDbContext dbContext = new ProductsDbContext())
+            {
+                //var productsToEdit = dbContext.Products;
+                //foreach (var product in productsToEdit)
+                //{
+                //    product.Price += 1000;
+                //}
+                //dbContext.SaveChanges();
+
+                dbContext.Database.ExecuteSqlRaw("update products set price = price + 1");
+            }
+
+
+
             // Product Catalog Management Application - CRUD
 
             // Step1: Download and Install from nuget.org - use package manager - CLI and GUI
@@ -31,6 +48,37 @@ namespace EFDemoApp
             //Select();
 
             // Lab 1: Get Product Name and Category Name then display
+
+
+
+            // Add a new product with new category with new supplier
+            // display product name, category name and supplier name (use egar and lazy loading)
+
+
+
+            // IPhone Mobiles
+            // Galaxy Mobiles
+            // Dell XPS    Mobiles
+            // IWatch Smart Watches
+
+            // Lab 2 : Get all products belongs to Laptops
+            // Lab 3 : How many products in Mobiles Category
+            // Lab 4 : Get Costliest Product
+            // Lab 5 : Get cheapest Product
+            // Lab 6 : In which category have more products
+            // Lab 7: Which category has costliest product
+            // Lab 8: Get category and count of its products then display
+            // Example:
+            // Laptops 3
+            // Smart Watches 2
+
+
+
+
+        }
+
+        private static void NewMethod1()
+        {
             using (ProductsDbContext dbContext = new ProductsDbContext())
             {
                 // add new customer
@@ -74,33 +122,6 @@ namespace EFDemoApp
                 //    Console.WriteLine(item.Name);
                 //}
             }
-
-
-
-            // Add a new product with new category with new supplier
-            // display product name, category name and supplier name (use egar and lazy loading)
-
-
-
-            // IPhone Mobiles
-            // Galaxy Mobiles
-            // Dell XPS    Mobiles
-            // IWatch Smart Watches
-
-            // Lab 2 : Get all products belongs to Laptops
-            // Lab 3 : How many products in Mobiles Category
-            // Lab 4 : Get Costliest Product
-            // Lab 5 : Get cheapest Product
-            // Lab 6 : In which category have more products
-            // Lab 7: Which category has costliest product
-            // Lab 8: Get category and count of its products then display
-            // Example:
-            // Laptops 3
-            // Smart Watches 2
-
-
-
-
         }
 
         private static void NewMethod()

@@ -1,0 +1,34 @@
+﻿@model List<KnowledgeHubPortal.Domain.Entities.Catagory>
+
+<h1>Catagory List ( @Model.Count  )</h1>
+<hr />
+
+<table class="table  table-hover">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var catagory in Model)
+        {
+            <tr>
+                <td>@catagory.Id</td>
+                <td>@catagory.Name</td>
+                <td>@catagory.Description</td>
+            </tr>
+        }
+
+
+    </tbody>
+   
+</table>
+
+
+
+
+
