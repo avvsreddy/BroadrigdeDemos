@@ -6,10 +6,22 @@ namespace KnowledgeHubPortal.Data
     public class KHPortalDbContext : DbContext
     {
 
+
+
+
         // Configure DB
+
+        public KHPortalDbContext(DbContextOptions<KHPortalDbContext> options) : base(options)
+        {
+        }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=BrodridgeKHPortalDB2025;Integrated Security=True");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=BrodridgeKHPortalDB2025;Integrated Security=True");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
