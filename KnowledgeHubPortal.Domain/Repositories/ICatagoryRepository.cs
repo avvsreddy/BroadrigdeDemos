@@ -9,5 +9,10 @@ namespace KnowledgeHubPortal.Domain.Repositories
         List<Catagory> GetAll();
 
         Catagory GetById(int id);
+
+        void Delete(int catagoryId);
+
+        void Edit(Catagory catagory);
+
     }
 }

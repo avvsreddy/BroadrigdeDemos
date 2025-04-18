@@ -11,6 +11,19 @@ namespace KnowledgeHubPortal.Data
         {
             this._context = context;
         }
+
+        public void Delete(int catagoryId)
+        {
+            _context.Catagories.Remove(_context.Catagories.Find(catagoryId));
+            _context.SaveChanges();
+        }
+
+        public void Edit(Catagory catagory)
+        {
+            _context.Catagories.Update(catagory);
+            _context.SaveChanges();
+        }
+
         public List<Catagory> GetAll()
         {
             return _context.Catagories.ToList();
