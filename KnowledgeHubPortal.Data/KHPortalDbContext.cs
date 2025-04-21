@@ -40,5 +40,6 @@ namespace KnowledgeHubPortal.Data
 
         // Map Tables
         public DbSet<Catagory> Catagories { get; set; }
+        public DbSet<Article> Articles { get; set; }
     }
 }

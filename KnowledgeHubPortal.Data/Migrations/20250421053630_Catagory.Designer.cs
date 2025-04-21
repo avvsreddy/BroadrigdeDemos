@@ -4,6 +4,7 @@ using KnowledgeHubPortal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KnowledgeHubPortal.Data.Migrations
 {
     [DbContext(typeof(KHPortalDbContext))]
-    partial class KHPortalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250421053630_Catagory")]
+    partial class Catagory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,6 +51,7 @@ namespace KnowledgeHubPortal.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SubmitedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")

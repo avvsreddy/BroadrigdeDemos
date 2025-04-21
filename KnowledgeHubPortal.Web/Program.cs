@@ -15,6 +15,7 @@ namespace KnowledgeHubPortal.Web
             // Add services to the container.
             // IoC Registration
             builder.Services.AddScoped<ICatagoryRepository, CatagoryRepository>();
+            builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
 
             //builder.Services.AddSingleton<KHPortalDbContext, KHPortalDbContext>();
             //builder.Services.AddDbContext<KHPortalDbContext>();
