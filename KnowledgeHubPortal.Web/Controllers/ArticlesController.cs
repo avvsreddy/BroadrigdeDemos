@@ -1,6 +1,7 @@
 ﻿using KnowledgeHubPortal.Domain.Entities;
 using KnowledgeHubPortal.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace KnowledgeHubPortal.Web.Controllers
 {
@@ -52,6 +53,41 @@ namespace KnowledgeHubPortal.Web.Controllers
             TempData["MSG"] = $"Article {article.Title} submited successfully for admin review";
             return RedirectToAction("Submit");
         }
+
+        // .../articles/review
+        //[HttpGet]
+        public IActionResult Review(int id = 0)
+        {
+            // fetch the articles for review
+            var articlesForReview = articleRepo.GetArticlesForReview(id);
+            var catagories = catagoryRepo.GetAll();
+
+            var selectItems = from catagory in catagories
+                              select new SelectListItem
+                              {
+                                  Text = catagory.Name,
+                                  Value = catagory.Id.ToString()
+                              };
+
+            ViewBag.Catagories = selectItems;
+            // send to view
+            return View(articlesForReview);
+        }
+
+        public IActionResult Approve(List<int> ids)
+        {
+            articleRepo.ApproveArticles(ids);
+            TempData["MSG"] = $"{ids.Count} approved successfully";
+            return RedirectToAction("Review");
+        }
+
+        public IActionResult Reject(List<int> ids)
+        {
+            articleRepo.RejectArticles(ids);
+            TempData["MSG"] = $"{ids.Count} rejected successfully";
+            return RedirectToAction("Review");
+        }
+
 
     }
 }

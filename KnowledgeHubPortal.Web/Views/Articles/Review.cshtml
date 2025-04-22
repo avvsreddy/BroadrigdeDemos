@@ -1,0 +1,69 @@
+﻿@model IEnumerable<KnowledgeHubPortal.Domain.Entities.Article>
+@using Humanizer
+@{
+    ViewData["Title"] = "Review";
+}
+
+<h1>Review Articles</h1>
+
+@TempData["MSG"]
+
+
+<form action="/Articles/Review" method="post">
+    <select name="id" asp-items="@ViewBag.Catagories">
+    </select>
+    <input type="submit" name="btnSubmit" value="Search" />
+</form>
+
+<form method"post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Review</th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.CatagoryId)
+                </th>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.DateSubmited)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="ids" value="@item.ArticleId" />
+                    </td>
+
+
+
+                    <td>
+                        <a href="@item.ArticleUrl" target="_blank">@item.Title</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Catagory.Name)
+                    </td>
+
+
+                    <td>
+                        @item.DateSubmited.Humanize(false)
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input class="btn btn-primary" type="submit" formaction="/Articles/Approve" value="Approve" />
+    <input class="btn btn-danger" type="submit" formaction="/Articles/Reject" value="Reject" />
+</form>

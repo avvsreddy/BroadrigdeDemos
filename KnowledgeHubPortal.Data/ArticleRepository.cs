@@ -1,5 +1,6 @@
 ﻿using KnowledgeHubPortal.Domain.Entities;
 using KnowledgeHubPortal.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace KnowledgeHubPortal.Data
 {
@@ -37,12 +38,12 @@ namespace KnowledgeHubPortal.Data
 
         public List<Article> GetArticlesForReview(int catagoryId = 0)
         {
-            var articlesForReview = from article in _context.Articles
+            var articlesForReview = from article in _context.Articles.Include(a => a.Catagory)
                                     where article.IsApproved == false
                                     select article;
             if (catagoryId != 0)
             {
-                articlesForReview = from article in articlesForReview
+                articlesForReview = from article in articlesForReview.Include(a => a.Catagory)
                                     where article.CatagoryId == catagoryId
                                     select article;
             }

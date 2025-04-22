@@ -10,6 +10,7 @@
         public Catagory? Catagory { get; set; }
         public bool IsApproved { get; set; }
         public string? SubmitedBy { get; set; }
+
         public DateTime DateSubmited { get; set; }
     }
 }
