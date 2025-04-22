@@ -8,14 +8,7 @@
 
 <div class="mt-2 mb-2">
     <form action="/Articles/Review" method="post" class="row g-2 align-items-center">
-        <div class="col-auto">
-            <select name="id" class="form-select" asp-items="@ViewBag.Catagories">
-                <option disabled selected>Select a category</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <input type="submit" name="btnSubmit" value="Search" class="btn btn-primary" />
-        </div>
+        @Html.Partial("_SearchArticlesPartial")
     </form>
 </div>
 

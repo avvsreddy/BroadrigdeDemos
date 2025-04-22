@@ -88,6 +88,23 @@ namespace KnowledgeHubPortal.Web.Controllers
             return RedirectToAction("Review");
         }
 
+        public IActionResult Browse(int id = 0)
+        {
+            var catagories = catagoryRepo.GetAll();
+
+            var selectItems = from catagory in catagories
+                              select new SelectListItem
+                              {
+                                  Text = catagory.Name,
+                                  Value = catagory.Id.ToString()
+                              };
+
+            ViewBag.Catagories = selectItems;
+
+            var articlesForBrowse = articleRepo.GetArticlesForBrowse(id);
+
+            return View(articlesForBrowse);
+        }
 
     }
 }

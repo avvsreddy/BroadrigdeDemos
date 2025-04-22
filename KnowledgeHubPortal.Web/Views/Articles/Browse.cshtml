@@ -1,0 +1,62 @@
+﻿@model IEnumerable<KnowledgeHubPortal.Domain.Entities.Article>
+@using Humanizer
+@{
+    ViewData["Title"] = "Browse";
+}
+
+<h1>Browse Articles</h1>
+
+
+<div class="mt-2 mb-2">
+    <form action="/Articles/Browse" method="post" class="row g-2 align-items-center">
+        @Html.Partial("_SearchArticlesPartial")
+
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+           
+           
+           
+            <th>
+                @Html.DisplayNameFor(model => model.SubmitedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateSubmited)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                <a href="@item.ArticleUrl">@item.Title</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+           
+          
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmitedBy)
+            </td>
+            <td>
+                @item.DateSubmited.Humanize(false)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
