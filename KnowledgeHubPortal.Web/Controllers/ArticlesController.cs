@@ -77,14 +77,14 @@ namespace KnowledgeHubPortal.Web.Controllers
         public IActionResult Approve(List<int> ids)
         {
             articleRepo.ApproveArticles(ids);
-            TempData["MSG"] = $"{ids.Count} approved successfully";
+            TempData["MSG"] = $"{ids.Count} Articles approved successfully";
             return RedirectToAction("Review");
         }
 
         public IActionResult Reject(List<int> ids)
         {
             articleRepo.RejectArticles(ids);
-            TempData["MSG"] = $"{ids.Count} rejected successfully";
+            TempData["MSG"] = $"{ids.Count} Articles rejected successfully";
             return RedirectToAction("Review");
         }
 

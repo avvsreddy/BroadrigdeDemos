@@ -6,14 +6,18 @@
 
 <h1>Review Articles</h1>
 
-@TempData["MSG"]
-
-
-<form action="/Articles/Review" method="post">
-    <select name="id" asp-items="@ViewBag.Catagories">
-    </select>
-    <input type="submit" name="btnSubmit" value="Search" />
-</form>
+<div class="mt-2 mb-2">
+    <form action="/Articles/Review" method="post" class="row g-2 align-items-center">
+        <div class="col-auto">
+            <select name="id" class="form-select" asp-items="@ViewBag.Catagories">
+                <option disabled selected>Select a category</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <input type="submit" name="btnSubmit" value="Search" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
 
 <form method"post">
     <table class="table">
@@ -67,3 +71,7 @@
     <input class="btn btn-primary" type="submit" formaction="/Articles/Approve" value="Approve" />
     <input class="btn btn-danger" type="submit" formaction="/Articles/Reject" value="Reject" />
 </form>
+
+<div class="mt-2">
+    <span class="badge bg-primary">@TempData["MSG"]</span>
+</div>
