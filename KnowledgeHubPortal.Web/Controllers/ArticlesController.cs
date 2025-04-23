@@ -2,6 +2,7 @@
 using KnowledgeHubPortal.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using X.PagedList.Extensions;
 
 namespace KnowledgeHubPortal.Web.Controllers
 {
@@ -88,8 +89,13 @@ namespace KnowledgeHubPortal.Web.Controllers
             return RedirectToAction("Review");
         }
 
-        public IActionResult Browse(int id = 0)
+        public IActionResult Browse(int id = 0, int? page = null)
         {
+
+            int pageNumber = page ?? 1;
+            int pageSize = 4;
+
+
             var catagories = catagoryRepo.GetAll();
 
             var selectItems = from catagory in catagories
@@ -101,9 +107,11 @@ namespace KnowledgeHubPortal.Web.Controllers
 
             ViewBag.Catagories = selectItems;
 
-            var articlesForBrowse = articleRepo.GetArticlesForBrowse(id);
+            var articlesForBrowse = articleRepo.GetArticlesForBrowse(id).OrderBy(a => a.ArticleId);
+            var pagedList = articlesForBrowse.ToPagedList(pageNumber, pageSize);
 
-            return View(articlesForBrowse);
+
+            return View(pagedList);
         }
 
     }

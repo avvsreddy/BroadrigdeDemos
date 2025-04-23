@@ -1,7 +1,6 @@
 ﻿using KnowledgeHubPortal.Domain.Entities;
 using KnowledgeHubPortal.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using X.PagedList.Extensions;
 
 namespace KnowledgeHubPortal.Web.Controllers
 {
@@ -17,7 +16,7 @@ namespace KnowledgeHubPortal.Web.Controllers
         }
 
         // .../catagory/index
-        public IActionResult Index(int? page)
+        public async Task<IActionResult> Index(int? page)
         {
             // Fetch the data from model
 
@@ -36,23 +35,23 @@ namespace KnowledgeHubPortal.Web.Controllers
 
             // pass the data to view
 
-            int pageSize = 5;
-            int pageNumber = page ?? 1;
+            //int pageSize = 5;
+            //int pageNumber = page ?? 1;
 
-            var categories = _repository.GetAll()
-                .OrderBy(c => c.Name)
-                .ToPagedList(pageNumber, pageSize);
+            var categories = _repository.GetAllAsync().Result;//.Result.OrderBy(c => c.Name);
+
+            //var pagedList = categories.ToPagedList(pageNumber, pageSize);
 
             return View(categories);
         }
         // .../catagory/create
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Catagory catagory)
+        public async Task<IActionResult> Create(Catagory catagory)
         {
             // collect the data from ui
             // validate
@@ -61,14 +60,14 @@ namespace KnowledgeHubPortal.Web.Controllers
                 return View();
             }
             // pass to backend
-            _repository.Save(catagory);
+            await _repository.SaveAsync(catagory);
             // return a view
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _repository.Delete(id);
+            await _repository.DeleteAsync(id);
 
             TempData["MSG"] = $"Category {id} successfully deleted";
 
@@ -77,22 +76,22 @@ namespace KnowledgeHubPortal.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             // fetch the all data based on id
-            Catagory category = _repository.GetById(id);
+            Catagory category = await _repository.GetByIdAsync(id);
             // return edit view
             return View(category);
         }
 
         [HttpPost]
-        public IActionResult Edit(Catagory catagory)
+        public async Task<IActionResult> Edit(Catagory catagory)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
-            _repository.Edit(catagory);
+            await _repository.EditAsync(catagory);
             TempData["MSG"] = $"Category {catagory.Id} successfully updated";
             return RedirectToAction("Index");
         }
