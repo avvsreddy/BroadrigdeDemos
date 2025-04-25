@@ -1,9 +1,11 @@
 ﻿using KnowledgeHubPortal.Domain.Entities;
 using KnowledgeHubPortal.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KnowledgeHubPortal.Web.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class CatagoryController : Controller
     {
         //CatagoryRepository catagoryRepository = new CatagoryRepository();
@@ -16,8 +18,13 @@ namespace KnowledgeHubPortal.Web.Controllers
         }
 
         // .../catagory/index
-        public async Task<IActionResult> Index(int? page)
+        [ResponseCache(Duration = 60)]
+        // [AllowAnonymous]
+        public async Task<IActionResult> Index()
         {
+
+            ViewBag.Date = DateTime.Now;
+
             // Fetch the data from model
 
             //CatagoryRepository catagoryRepository = new CatagoryRepository();

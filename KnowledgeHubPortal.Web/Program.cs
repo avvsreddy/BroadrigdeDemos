@@ -35,8 +35,14 @@ namespace KnowledgeHubPortal.Web
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddResponseCaching();
 
             var app = builder.Build();
 
@@ -51,6 +57,8 @@ namespace KnowledgeHubPortal.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseResponseCaching();
 
             app.UseHttpsRedirection();
             app.UseRouting();
