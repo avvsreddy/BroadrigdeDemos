@@ -3,4 +3,10 @@
 GET {{ProductsCatalogService_HostAddress}}/weatherforecast/
 Accept: application/json
 
-###
+### Get all products end point
+GET {{ProductsCatalogService_HostAddress}}/api/products?$select=name,price
+Accept: application/json
+
+### Get product by id
+GET {{ProductsCatalogService_HostAddress}}/api/products/11
+Accept: application/json
