@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.OData;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductsCatalogService.Data;
@@ -107,6 +108,67 @@ namespace ProductsCatalogService.Controllers
         {
             var product = await db.Products.OrderByDescending(p => p.Price).FirstOrDefaultAsync();
             return Ok(product);
+        }
+
+        // endpoint for posting the product data
+
+        // POST .../api/products
+        [HttpPost]
+        [ProducesResponseType(typeof(Product), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> PostProduct([FromBody] Product product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invlid input");
+            }
+
+            db.Products.Add(product);
+            await db.SaveChangesAsync();
+            // return status code 201, location/url then saved data
+            // 
+            return Created($"/api/products/{product.Id}", product);
+
+        }
+
+        // Endpoint for delete product by id
+
+        // DELETE .../api/products/id
+        [HttpDelete("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var productToDelete = await db.Products.FindAsync(id);
+            if (productToDelete == null)
+            {
+                return NotFound($"Product {id} not found");
+            }
+            db.Products.Remove(productToDelete);
+            await db.SaveChangesAsync();
+            return Ok($"Product {productToDelete.Name} deleted successfully");
+        }
+
+        // Endpoint for editing product
+
+        // HTTPPUT .../api/products
+
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> EditProduct([FromBody] Product product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid input");
+            }
+
+            db.Products.Update(product);
+            await db.SaveChangesAsync();
+            return Ok($"Product {product.Id} updated successfully");
+
+
         }
     }
 }

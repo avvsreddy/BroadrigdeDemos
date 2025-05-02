@@ -85,6 +85,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Api Demos", "Web Api De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsCatalogService", "ProductsCatalogService\ProductsCatalogService.csproj", "{35BB8130-14F7-4532-AA6B-2EA9D01D99BE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity Demos", "Identity Demos", "{BEDC749B-41A9-4493-B3BF-D02CBE5DE04A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityWebApplication", "IdentityWebApplication\IdentityWebApplication.csproj", "{EE082D27-C6F4-4088-BFE3-61C99C362617}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -207,6 +211,10 @@ Global
 		{35BB8130-14F7-4532-AA6B-2EA9D01D99BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35BB8130-14F7-4532-AA6B-2EA9D01D99BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35BB8130-14F7-4532-AA6B-2EA9D01D99BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE082D27-C6F4-4088-BFE3-61C99C362617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE082D27-C6F4-4088-BFE3-61C99C362617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE082D27-C6F4-4088-BFE3-61C99C362617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE082D27-C6F4-4088-BFE3-61C99C362617}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -239,5 +247,6 @@ Global
 		{8F79B642-3295-4C7A-8A23-1ED6529F65C4} = {7A35BB3A-7955-4B68-A895-64213B51909C}
 		{97220E98-E0F5-4E37-B2AE-F23CC35B98D5} = {7A35BB3A-7955-4B68-A895-64213B51909C}
 		{35BB8130-14F7-4532-AA6B-2EA9D01D99BE} = {A4E8E244-EE3A-4968-9A76-F873393F55B5}
+		{EE082D27-C6F4-4088-BFE3-61C99C362617} = {BEDC749B-41A9-4493-B3BF-D02CBE5DE04A}
 	EndGlobalSection
 EndGlobal

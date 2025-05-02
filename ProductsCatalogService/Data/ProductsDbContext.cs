@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ProductsCatalogService.Entities;
 
 namespace ProductsCatalogService.Data
 {
-    public class ProductsDbContext : DbContext
+    public class ProductsDbContext : IdentityDbContext<IdentityUser> //DbContext
     {
         // configure database
 
@@ -16,5 +18,14 @@ namespace ProductsCatalogService.Data
         // map entities with tables
 
         public DbSet<Product> Products { get; set; }
+    }
+
+
+
+    class AppUser : IdentityUser
+    {
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
     }
 }

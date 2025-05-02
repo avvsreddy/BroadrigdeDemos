@@ -1,5 +1,6 @@
 
 using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProductsCatalogService.Data;
 
@@ -29,7 +30,22 @@ namespace ProductsCatalogService
             });
 
 
+            //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+            //                //.AddEntityFrameworkStores<ProductsDbContext>()
+            //                .AddDefaultTokenProviders()
+            //                .AddSignInManager();
+
+
+            builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+            .AddEntityFrameworkStores<ProductsDbContext>();
+
+            builder.Services.AddAuthorization();
+
             var app = builder.Build();
+
+            app.MapIdentityApi<IdentityUser>(); // for registration, login etc endpoints
+
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -44,7 +60,9 @@ namespace ProductsCatalogService
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
