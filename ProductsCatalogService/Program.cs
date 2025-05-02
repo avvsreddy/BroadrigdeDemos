@@ -30,10 +30,10 @@ namespace ProductsCatalogService
             });
 
 
-            //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-            //                //.AddEntityFrameworkStores<ProductsDbContext>()
-            //                .AddDefaultTokenProviders()
-            //                .AddSignInManager();
+            //builder.Services.AddIdentity<IdentityUser, IdentityRole>();
+            //.AddEntityFrameworkStores<ProductsDbContext>()
+            //.AddDefaultTokenProviders()
+            //.AddSignInManager();
 
 
             builder.Services.AddIdentityApiEndpoints<IdentityUser>()
