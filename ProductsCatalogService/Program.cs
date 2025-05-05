@@ -41,7 +41,27 @@ namespace ProductsCatalogService
 
             builder.Services.AddAuthorization();
 
+
+            // Step 1: Create CORS Policy
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("policy1", builder =>
+                {
+                    //builder.WithOrigins("http://one.com, http://two.com"); // for specific clients
+                    builder.AllowAnyOrigin(); // for all clients
+                    //builder.AllowAnyHeader();
+                    //builder.AllowAnyMethod();
+                    //builder.WithMethods("GET,POST");
+                });
+            });
+
+
             var app = builder.Build();
+
+            // use CORS middleware
+            //app.UseCors("policy1");
+            app.UseCors();
 
             app.MapIdentityApi<IdentityUser>(); // for registration, login etc endpoints
 

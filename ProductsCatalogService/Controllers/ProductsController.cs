@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductsCatalogService.Data;
@@ -23,6 +24,8 @@ namespace ProductsCatalogService.Controllers
         // GET .../api/products
         [HttpGet]
         [EnableQuery]
+
+        [EnableCors("policy1")]
         public IQueryable<Product> GetProducts()
         {
             return db.Products.AsQueryable();
@@ -34,6 +37,7 @@ namespace ProductsCatalogService.Controllers
         [Route("{id:int}")]
         [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [EnableCors("policy1")]
         public async Task<IActionResult> GetProduct(int id)
         {
             var product = await db.Products.FindAsync(id);
