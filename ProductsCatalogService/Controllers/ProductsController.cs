@@ -38,7 +38,30 @@ namespace ProductsCatalogService.Controllers
         [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [EnableCors("policy1")]
+        [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetProduct(int id)
+        {
+            var product = await db.Products.FindAsync(id);
+
+            if (product == null) // not found
+            {
+                // return 404 http status code
+                return NotFound($"Product with {id} not found");
+
+            }
+
+            // return data with 200 http status code
+            return Ok(product);
+        }
+
+
+        //.../api/products/v2/id
+        [HttpGet("v2/{id}")]
+        [Route("{id:int}")]
+        [ProducesResponseType(typeof(Productv2), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [EnableCors("policy1")]
+        public async Task<IActionResult> GetProductv2(int id)
         {
             var product = await db.Products.FindAsync(id);
 

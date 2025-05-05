@@ -63,6 +63,8 @@ namespace ProductsCatalogService
             //app.UseCors("policy1");
             app.UseCors();
 
+            app.UseResponseCaching();
+
             app.MapIdentityApi<IdentityUser>(); // for registration, login etc endpoints
 
 
